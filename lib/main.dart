@@ -9,6 +9,7 @@ import 'modules/hall-admin/auth-hall-admin/verification-hall-admin/presentation/
 import 'modules/hall-admin/home-hall-admin/presentation/screens/home-hall-admin-screen.dart';
 import 'modules/hall-admin/lougeInformation-hall-admin/presentation/screens/lougeInformation-hall-admin-screen.dart';
 import 'modules/hall-admin/lougeInformation-hall-admin/presentation/screens/wait_HallAdmin_screen.dart';
+import 'modules/hall-admin/myEmployees-hall-admin/presentation/screens/myEmployees-hallAdmin-screen.dart';
 import 'modules/hall-admin/notification-hall-admin/presentation/screens/notification-hallAdmin-screen.dart';
 import 'modules/hall-admin/profile-hall-admin/edit-profile-hall-admin/presentation/screens/EditProfile-AdminHall-screen.dart';
 import 'modules/hall-admin/profile-hall-admin/view-profile-hall-admin/presentation/screens/vieProfile-hallAdmin-screen.dart';
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
           HomeHallAdminScreen.page,
           NotificationHallAdminScreen.page,
           ViewProfileHallAdminScreen.page,
+          MyEmployeesHallAdminScreen.page
 
         ],
 

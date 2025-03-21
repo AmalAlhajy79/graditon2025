@@ -24,10 +24,10 @@ class DropdownController extends GetxController {
   }
 }
 
-class MultiSelectDropdown extends StatelessWidget {
+class loungeTypeDropdown extends StatelessWidget {
   final DropdownController controller = Get.put(DropdownController());
 
-  final List<String> options = ['join', 'ggg', 'option1', 'option2'];
+  final List<String> options = ['joys', 'relieved', 'joys and relieved'];
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class MultiSelectDropdown extends StatelessWidget {
 
                 Padding(
                   padding:  EdgeInsets.only(left: 2.w),
-                  child: Text('chose the type of events in the hall'),
+                  child: Text('chose the lounge type'),
                 ),
                 Icon(Icons.arrow_drop_down, size: 25),
               ],

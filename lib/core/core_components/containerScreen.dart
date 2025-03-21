@@ -37,12 +37,13 @@ class ContainerScreen extends StatelessWidget {
       decoration: BoxDecoration(
           color:colorContainer != null
               ? colorContainer
-              : AppColors.white,
-          border:border != null ? border :Border(bottom: BorderSide(color: AppColors.col6,width: 1))
+              : Colors.white,
+          border:border != null ? border :Border(bottom: BorderSide(color: Colors.black54,width: 1))
       ),
       child: Padding(
         padding: EdgeInsets.only(left: 1.w),
-        child: Row(
+        child:
+        Row(
           children: [
             Padding(
               padding:
@@ -54,10 +55,10 @@ class ContainerScreen extends StatelessWidget {
                         ? colorTextStyle
                         : Colors.black87,
                     fontWeight:fontWeight != null ? fontWeight : FontWeight.w400,
-                    fontSize:fontSize != null ? fontSize: 3.1.w),
+                    fontSize:fontSize != null ? fontSize: 3.3.w),
               ),
             ),
-            sizedBox ?? SizedBox(width: 28.w),
+            sizedBox ?? SizedBox(width: 15.w),
            padding ?? Padding(
               padding:
               EdgeInsets.only(bottom: 15.w, top: 1.w),

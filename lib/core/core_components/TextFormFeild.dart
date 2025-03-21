@@ -40,7 +40,7 @@ class TextFieldWhite extends StatelessWidget {
           color:colorContainer != null
               ? colorContainer
               : Colors.white,
-          borderRadius: BorderRadius.all(Radius.circular(14)),
+          borderRadius: BorderRadius.all(Radius.circular(12)),
         ),
         child:
         TextField(
@@ -55,24 +55,24 @@ class TextFieldWhite extends StatelessWidget {
                   ? hintcolorTextStyle
                   : Colors.grey,
               fontWeight:hintfontWeight != null ? hintfontWeight : FontWeight.w400,
-              fontSize:hintfontSize != null ? hintfontSize : 3.1.w),
+              fontSize:hintfontSize != null ? hintfontSize : 3.4.w),
             labelStyle: TextStyle(
                 color: colorTextStyle != null
                     ? colorTextStyle
                     : Colors.grey.shade600,
                 fontWeight:fontWeight != null ? fontWeight : FontWeight.w400,
-                fontSize:fontSize != null ? fontSize : 3.1.w),
+                fontSize:fontSize != null ? fontSize : 3.4.w),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14), // زوايا دائرية
-              borderSide: BorderSide(color:  AppColors.col6, width: 1.0), // لون بني
+              borderSide: BorderSide(color:  Colors.black54, width: 1.0), // لون بني
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14), // زوايا دائرية عند التركيز
-              borderSide: BorderSide(color:  AppColors.col6, width: 1.0), // لون بني
+              borderSide: BorderSide(color:  Colors.black54, width: 1.0), // لون بني
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14), // زوايا دائرية عند التفعيل
-              borderSide: BorderSide(color: AppColors.col6, width: 1.0), // لون بني
+              borderSide: BorderSide(color: Colors.black54, width: 1.0), // لون بني
             ),
           ),
         ),

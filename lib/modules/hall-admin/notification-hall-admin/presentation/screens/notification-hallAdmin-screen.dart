@@ -21,55 +21,65 @@ class NotificationHallAdminScreen extends StatelessWidget {
     return AppScaffold(
         body: Container(
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            AppColors.col555,
-            AppColors.col1,
-            AppColors.col4,
-            AppColors.col3,
-            AppColors.col22,
-            AppColors.col4,
-            AppColors.col1,
-            AppColors.col1,
-            Colors.white70,
-           Colors.white70,
-            Colors.white38,
-            Colors.white12,
-            Colors.white
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
+          color: Colors.white
       ),
       child: Column(
         children: [
           Padding(
             padding: EdgeInsets.only(
-                left: 3.6.w, top: 6.w, right: 30.w, bottom: 5.w),
+                bottom: 5.w),
+            child: Container(
+              height: 20.w,
+              decoration:BoxDecoration(
+                color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.8),
+              spreadRadius: 1, // مدى انتشار الظل
+              blurRadius: 4, // مدى تمويه الظل
+              offset: Offset(
+                  0, 3), // الإزاحة (يمين، أسفل)
+            ),
+          ],
+        ),
+              child: Padding(
+                padding: EdgeInsets.only(left: 4.w),
+                child: Row(
+                  children: [
+                    IconButton(
+                        onPressed: () { Get.back();},
+                        icon: Icon(
+                          Icons.arrow_back_ios_new_sharp,
+                          size: 17,
+                          color: Colors.black87,
+                          weight: 15.w,
+                        )),
+                    SizedBox(
+                      width: 22.w,
+                    ),
+                    TextUtiles(
+                      title: "Notifications",
+                      fontWeight: FontWeight.w500,
+                      fontSize: 18,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding:  EdgeInsets.only(left: 8.w),
             child: Row(
               children: [
-                IconButton(
-                    onPressed: () { Get.back();},
-                    icon: Icon(
-                      Icons.arrow_back_ios_new,
-                      size: 16,
-                      color: Colors.black,
-                    )),
-                SizedBox(
-                  width: 24.w,
-                ),
-                TextUtiles(
-                  title: "Notifications",
-                  fontWeight: FontWeight.w400,
-                  fontSize: 19,
-                )
+                TextUtiles(title: "New", fontSize: 14),
               ],
             ),
           ),
+          SizedBox(height: 2.5.w,),
           Container(
               height: 30.w,
               decoration: BoxDecoration(
-                  color: Colors.white.withAlpha(95),
+                  color: AppColors.white,
                   // color: Colors.grey.withAlpha(70),
                   border: Border(
                       bottom: BorderSide(color: Colors.black87, width: 2))),
@@ -84,7 +94,7 @@ class NotificationHallAdminScreen extends StatelessWidget {
                         colorTextStyle: Colors.black54),
                     leading: CircleAvatar(
                         backgroundImage: AssetImage("assets/images/geirl.jpg"),
-                        maxRadius: 7.w),
+                        maxRadius: 7.5.w),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
