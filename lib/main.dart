@@ -13,6 +13,8 @@ import 'modules/hall-admin/myEmployees-hall-admin/presentation/screens/myEmploye
 import 'modules/hall-admin/notification-hall-admin/presentation/screens/notification-hallAdmin-screen.dart';
 import 'modules/hall-admin/profile-hall-admin/edit-profile-hall-admin/presentation/screens/EditProfile-AdminHall-screen.dart';
 import 'modules/hall-admin/profile-hall-admin/view-profile-hall-admin/presentation/screens/vieProfile-hallAdmin-screen.dart';
+import 'modules/user/both-joys-And-relievedHall/services-hall/services-both-Jo-Re-hall/presentation/screens/relieved.dart';
+import 'modules/user/joys-hall/services-hall/services-joys-hall/presentation/screens/Joys-Hall-Services-screen.dart';
 
 main() async {
   // await StorageHandler.init();
@@ -39,7 +41,7 @@ class MyApp extends StatelessWidget {
         ),
         //translations: AppTranslation(),
         // locale: StorageHandler().locale,
-        initialRoute: HomeHallAdminScreen.name,
+        initialRoute: BothReHallServicesScreen.name,
         getPages: [
           LougeInformationHallAdminScreen.page,
           WaitHallAdminScreen.page,
@@ -50,8 +52,9 @@ class MyApp extends StatelessWidget {
           HomeHallAdminScreen.page,
           NotificationHallAdminScreen.page,
           ViewProfileHallAdminScreen.page,
-          MyEmployeesHallAdminScreen.page
-
+          MyEmployeesHallAdminScreen.page,
+          JoysHallServicesScreen.page,
+          BothReHallServicesScreen.page
         ],
 
       );

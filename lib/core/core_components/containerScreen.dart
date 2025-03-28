@@ -4,7 +4,6 @@ import 'package:hall_gradition/core/consts/app_colors.dart';
 import 'package:hall_gradition/core/ui_sizer/app_sizer.dart';
 
 class ContainerScreen extends StatelessWidget {
-
   String title;
   double? height;
   double? weight;
@@ -13,63 +12,65 @@ class ContainerScreen extends StatelessWidget {
   double? fontSize;
   Color? colorTextStyle;
   Border? border;
- final SizedBox? sizedBox;
- final Padding? padding;
-
+  final SizedBox? sizedBox;
+  final Padding? padding;
+BorderRadius? borderRadius;
   ContainerScreen(
       {required this.title,
-        this.height,
-        this.weight,
-        this.colorContainer,
-        this.fontWeight,
-        this.fontSize,
-        this.colorTextStyle,
-        this.border,
-        this.sizedBox,
-        this.padding
+      this.height,
+      this.weight,
+      this.colorContainer,
+      this.fontWeight,
+      this.fontSize,
+      this.colorTextStyle,
+      this.border,
+      this.sizedBox,
+      this.padding,
+        this.borderRadius
       });
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      height:height != null ? height : 12.w,
-      width:weight != null ? weight : 86.w,
+    return Container(
+      height: height != null ? height : 12.w,
+      width: weight != null ? weight : 86.w,
       decoration: BoxDecoration(
-          color:colorContainer != null
-              ? colorContainer
-              : Colors.white,
-          border:border != null ? border :Border(bottom: BorderSide(color: Colors.black54,width: 1))
+          color: colorContainer != null ? colorContainer : Colors.white,
+          borderRadius:borderRadius!=null?borderRadius: BorderRadius.zero,
+          border: border != null
+              ? border
+              : Border(bottom: BorderSide(color: Colors.black54, width: 1))
       ),
+
       child: Padding(
         padding: EdgeInsets.only(left: 1.w),
-        child:
-        Row(
+        child: Row(
           children: [
             Padding(
-              padding:
-              EdgeInsets.only(left: 2.5.w, top: 1.w),
+              padding: EdgeInsets.only(left: 2.5.w, top: 1.w),
               child: Text(
                 "$title",
                 style: TextStyle(
-                    color:colorTextStyle != null
+                    color: colorTextStyle != null
                         ? colorTextStyle
                         : Colors.black87,
-                    fontWeight:fontWeight != null ? fontWeight : FontWeight.w400,
-                    fontSize:fontSize != null ? fontSize: 3.3.w),
+                    fontWeight:
+                        fontWeight != null ? fontWeight : FontWeight.w400,
+                    fontSize: fontSize != null ? fontSize : 3.3.w),
               ),
             ),
             sizedBox ?? SizedBox(width: 15.w),
-           padding ?? Padding(
-              padding:
-              EdgeInsets.only(bottom: 15.w, top: 1.w),
-              child: IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.arrow_drop_down,
-                  size: 25,
+            padding ??
+                Padding(
+                  padding: EdgeInsets.only(bottom: 15.w, top: 1.w),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.arrow_drop_down,
+                      size: 25,
+                    ),
+                  ),
                 ),
-              ),
-            ),
           ],
         ),
       ),

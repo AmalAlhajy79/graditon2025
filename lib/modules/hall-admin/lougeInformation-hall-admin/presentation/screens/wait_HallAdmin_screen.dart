@@ -21,7 +21,8 @@ class WaitHallAdminScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var mq = MediaQuery.of(context).size;
     return AppScaffold(
-      body: Stack(
+      body:
+      Stack(
         //  alignment:AlignmentDirectional.bottomCenter,
         children: [
           Container(

@@ -72,7 +72,8 @@ class MyEmployeesHallAdminScreen extends StatelessWidget {
                 showDialog(
                   context: context,
                   builder: (context) {
-                    return Container(
+                    return
+                      Container(
                       //  color: Colors.white10,
                       child: Dialog(
                         // backgroundColor: Colors.white, //

@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 class AppColors {
 
-
+  static const gerysuggest =Color(0xFFD9D9D9);
+  static const zayteGamiq =Color(0xFF5E5B35);
+  static const zayteFateh =Color(0xFFC5C29B);
   static const col1 =Color(0xFFDCA4B7);
   static const col2 =Color(0x81C599C5);
   static const col22 =Color(0xFFDCA4B7);
@@ -16,7 +18,7 @@ class AppColors {
   static const greenF =Color(0xE827F618);
 
   static const color1 =Color(0xFFFFCDD2);
-  static const color2 =Color(0xFFFFEBEE);
+  static const color2 =Color(0xFFA4A463);
   static const color3 =Color(0xFFB0BEC5);
   static const color4 =Color(0xFFEF9A9A);
   static const color5 =Color(0xFFE57373);
