@@ -1,54 +1,42 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:dio/dio.dart';
+import 'package:hall_gradition/core/consts/api_const.dart';
+import 'package:hall_gradition/core/network/network_helper.dart';
+import '../../../data/models/home-hall-admin-model.dart';
+class HallDetailsAdminController extends GetxController {
+  var hallDetails = Rx<DetailsAdminHallModel?>(null);
+  var isLoading = false.obs;
+  var errorMessage = "".obs;
+  var hallId_public=0;
 
-import '../../../../../../../core/data_state/data_state.dart';
-import '../../../../../../../core/handler/handler.dart';
-import '../../../data/data_source/home-hall-admin-data-source.dart';
-
-class HomeHallAdminController extends GetxController {
-
-  final TextEditingController Full_name_Controller = TextEditingController();
-  final TextEditingController email_Controller = TextEditingController();
-  final TextEditingController number_Controller = TextEditingController();
-
-  String? _path;
-
-  void setPath(String? newPath) {
-    _path = newPath;
-
-  }
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  DataState<void> _dataState = DataState<void>();
-  DataStatus get status => _dataState.status;
-
-  void home_HallAdmin() async {
-    _dataState = await handle<void>(
-            () =>
-                HomeHallAdminDataSource.homeHallAdmin(
-               // provider_id:1, //user_id_Controller.hashCode,
-                Full_name:Full_name_Controller.text,
-                email:  email_Controller.text,
-                  number: number_Controller.hashCode
-            ));
-    print("....... status after function EditProfileAdminHall().......");
-    print(status);
-    print('.............success..........');
-    // Get.toNamed(ProviderProfile.name);
-
-    // Get.back();
-    if(status == DataStatus.error){
-    print('.............error..........');
-    }
-    else{
-      print("True .... ....");
-    }
-  }
   @override
-  void dispose() {
-    Full_name_Controller.dispose();
-    email_Controller.dispose();
-    number_Controller.dispose();
-    super.dispose();
+  void onInit() {
+    super.onInit();
+    // تأكد من أن hallId تم تعيينه بشكل صحيح عند التهيئة
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      fetchHallDetails(hallId_public); // استدعاء fetchHallDetails بعد مرحلة البناء
+    });
   }
 
+  Future<void> fetchHallDetails(int hallId) async {
+    isLoading.value = true;
+    try {
+      final response = await NetworkHelper().get(ApiConst.home_Hall_Admin(hallId));
+      if (response.statusCode == 200) {
+        List<dynamic> data = response.data;
+        List<DetailsAdminHallModel> halls = DetailsAdminHallModel.fromJsonList(data);
+
+        if (halls.isNotEmpty) {
+          hallDetails.value = halls[0]; // تعيين أول قاعة إلى hallDetails
+        }
+      } else {
+        errorMessage.value = 'فشل في تحميل البيانات';
+      }
+    } catch (e) {
+      errorMessage.value = 'حدث خطأ: $e';
+    } finally {
+      isLoading.value = false;
+    }
+  }
 }

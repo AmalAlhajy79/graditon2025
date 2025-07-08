@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
 import 'package:hall_gradition/core/ui_sizer/app_sizer.dart';
+
+import '../../modules/user/feedback/presentaion/controller/user-SendFeedbackRat-controller.dart';
 
 class RatingContainer extends StatefulWidget {
   @override
@@ -8,15 +12,16 @@ class RatingContainer extends StatefulWidget {
 }
 
 class _RatingContainerState extends State<RatingContainer> {
-  double _rating = 0;
 
+  FeedbackController controller=Get.put(FeedbackController());
+  double _rating = 0;
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         RatingBar.builder(
-          initialRating: _rating,
+          initialRating:controller.viewUserRating!=null?controller.viewUserRating.toDouble():_rating,// _rating,
           minRating: 1,
           direction: Axis.horizontal,
           allowHalfRating: true,
@@ -28,9 +33,9 @@ class _RatingContainerState extends State<RatingContainer> {
             color: Colors.orange.shade300,
           ),
           onRatingUpdate: (rating) {
-            setState(() {
-              _rating = rating;
-            });
+            // setState(() {
+            //   _rating =controller.viewUserRating;// rating;
+            // });
           },
         ),
       ],

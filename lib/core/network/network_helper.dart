@@ -1,3 +1,8 @@
+
+import 'dart:io';
+
+import 'package:dio/src/form_data.dart';
+
 import 'dio_network_helper.dart';
 
 part 'app_response.dart';
@@ -16,15 +21,17 @@ abstract class NetworkHelper {
       {
         Map<String, String>? headers,
         Map<String, dynamic>? body,
-        Map<String,String>? files
+        Map<String,String>? files,
+        FormData? data
       });
+
 
   Future<AppResponse> put(
       String url,
       {
         Map<String, String>? headers,
         Map<String, dynamic>? body,
-        Map<String,String>? files
+        Map<String,dynamic>? files
       });
 
   Future<AppResponse> delete(
@@ -33,4 +40,17 @@ abstract class NetworkHelper {
         Map<String, String>? headers,
         Map<String, dynamic>? body
       });
+  Future<AppResponse> reject(
+      String url,
+      {
+        Map<String, String>? headers,
+        Map<String, dynamic>? body
+      });
+  Future<AppResponse> approved(
+      String url,
+      {
+        Map<String, String>? headers,
+        Map<String, dynamic>? body
+      });
+
 }

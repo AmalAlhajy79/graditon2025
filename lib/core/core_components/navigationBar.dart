@@ -10,6 +10,9 @@ import '../consts/app_colors.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final NavigationController controller = Get.put(NavigationController());
+final int hallId;
+
+ CustomBottomNavigationBar({ required this.hallId});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
             icon: Icon(Icons.home, color: controller.selectedIndex.value == 1 ? Colors.white : Colors.black),
             onPressed: () {
               controller.changeIndex(1);
-              Get.toNamed(HomeHallAdminScreen.name);
+              Get.to(() => HomeHallAdminScreen(hallId: hallId));
+              // Get.to(HomeHallAdminScreen(hallId: hallId));
             },
           ),
           IconButton(

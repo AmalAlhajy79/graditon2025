@@ -24,7 +24,7 @@ class TextAndCheckBoxScreen extends StatelessWidget {
           TextUtiles(
             title: title,
             fontWeight: FontWeight.w500,
-            fontSize:fontSize!=null?fontSize: 18,
+            fontSize:fontSize!=null?fontSize: 16,
             colorTextStyle: Colors.black87,
           ),
           Checkbox(

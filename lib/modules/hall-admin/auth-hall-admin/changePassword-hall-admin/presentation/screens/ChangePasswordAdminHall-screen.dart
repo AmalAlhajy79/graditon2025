@@ -2,8 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hall_gradition/core/ui_sizer/app_sizer.dart';
+import 'package:hall_gradition/modules/hall-admin/home-hall-admin/presentation/screens/home-hall-admin-screen.dart';
 import '../../../../../../core/consts/app_colors.dart';
 import '../../../../../../core/core_components/app_scaffold.dart';
+import '../../../../myHalls-admin/presentation/screens/myHallsAdmin-screen.dart';
+import '../controller/change-Password/ChangePassword-Controller.dart';
 import '../controller/change-Password/changePassword-binding.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -11,7 +14,7 @@ import 'package:hall_gradition/core/core_components/button.dart';
 import 'package:hall_gradition/core/core_components/textUtiles.dart';
 import '../../../../../../core/core_components/TextFormFeild.dart';
 
-class ChangePasswordAadminHallScreen extends StatelessWidget {
+class ChangePasswordAadminHallScreen extends GetView<ChangePasswordAdminHallController> {
   ChangePasswordAadminHallScreen({Key? key}) : super(key: key);
   static const name = '/ChangePasswordAdminHall';
   static final page = GetPage(
@@ -48,6 +51,9 @@ class ChangePasswordAadminHallScreen extends StatelessWidget {
               title: "Enter the new password",
               icon: Icon(Icons.lock_outlined, size: 23),
               colorContainer: AppColors.color3.withAlpha(80),
+              suffixIcon:controller.isPasswordVisible.value
+                  ? Icon(Icons.remove_red_eye_rounded,color: Colors.black54,)
+                  : Icon(Icons.visibility_off_rounded,color: Colors.black54,),
               weight: 85.w,
             ),
             SizedBox(
@@ -57,6 +63,9 @@ class ChangePasswordAadminHallScreen extends StatelessWidget {
               title: "confirm password",
               icon: Icon(Icons.lock_outlined, size: 23),
               colorContainer: AppColors.color3.withAlpha(80),
+              suffixIcon:controller.isPasswordVisible.value
+                  ? Icon(Icons.remove_red_eye_rounded,color: Colors.black54,)
+                  : Icon(Icons.visibility_off_rounded,color: Colors.black54,),
               weight: 85.w,
             ),
 
@@ -68,7 +77,9 @@ class ChangePasswordAadminHallScreen extends StatelessWidget {
               child: ButtonScreen(
                 title: "send",
                 weight: 85.w,
-                onTap: (){},
+                onTap: (){
+                  Get.toNamed(MyHallsAdminScreen.name);
+                },
               ),
             ),
             SizedBox(

@@ -1,40 +1,49 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../../../../../core/data_state/data_state.dart';
-import '../../../../../../../core/handler/handler.dart';
+import '../../../../home-hall-admin/presentation/controller/home-hall-admin/home-hall-admin-Controller.dart';
+import '../../../../notification-hall-admin/data/data_source/notification-hall-admin-data-source.dart';
+import '../../../../notification-hall-admin/data/models/notification-hallAdmin-model.dart';
 import '../../../data/data_source/myEmployees-hall-admin-data-source.dart';
+import '../../../data/models/myEmployees-hallAdmin-model.dart';
 
-class MyEmployeesHallAdminController extends GetxController {
+class ApprovedAssistantController extends GetxController {
+  var approvedUsers = <AssistantData>[].obs;
+  var isLoading = true.obs;
 
-  String? _path;
-
-  void setPath(String? newPath) {
-    _path = newPath;
-
-  }
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  DataState<void> _dataState = DataState<void>();
-  DataStatus get status => _dataState.status;
-
-  void NotificationAdmin() async {
-    _dataState = await handle<void>(
-            () =>
-                MyEmployeesHallAdminDataSource.myEmployeesAdminHall(name: '',hours: "",photo: ""));
-    print("....... status after function NotificationAdminHall().......");
-    print(status);
-
-    // Get.back();
-    if(status == DataStatus.error){
-    print('.............error..........');
-    }
-    else{
-      print("True .... ....");
-    }
-  }
+  final MyEmployeesHallAdminDataSource dataSource=MyEmployeesHallAdminDataSource();
+  HallDetailsAdminController hallDetailsAdminController=Get.find();
+  // ApprovedAssistantController(this.dataSource);
+// int hall_id=0;
   @override
-  void dispose() {
-    super.dispose();
+  void onInit() {
+   // fetchApprovedUsers();
+    super.onInit();
+    //fetchApprovedUsers();
   }
 
+  NotificationHallAdminDataSource notificationHallAdminDataSource=NotificationHallAdminDataSource();
+  Future<List<NotiAssistantData>> fetchIdHall() async {
+    final users = await notificationHallAdminDataSource.fetchUsers();
+    return users.toList();
+  }
+  Future<void> fetchApprovedUsers() async {
+    print("hallDetailsAdminController.hallId_public in fetchApprovedUsers()....MyEmploys..\n");
+    print(hallDetailsAdminController.hallId_public);
+    try {
+      isLoading(true);
+      var userList = await dataSource.fetchApprovedAssistant(hallDetailsAdminController.hallId_public);//(2);
+      approvedUsers.assignAll(userList);
+    } finally {
+      isLoading(false);
+    }
+  }
+
+
+  void delete_Assistant(int id) async {
+    try {
+      isLoading(true);
+      await dataSource.deleteAssistant(id);
+    } finally {
+      isLoading(false);
+    }
+  }
 }

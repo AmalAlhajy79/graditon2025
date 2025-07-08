@@ -4,7 +4,69 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:hall_gradition/core/ui_sizer/app_sizer.dart';
 
-class DropdownController extends GetxController {
+import '../controller/services-both-Jo-Re/services-both-Jo-Re-hall-Controller.dart';
+
+class HospitalityRelivedBothDropdown extends StatelessWidget {
+
+  final DropdownHospitalityRelivedBothController controller =
+  Get.put(DropdownHospitalityRelivedBothController());
+  final BothJoysReHallController bothJoysReHallController =
+  Get.put(BothJoysReHallController());
+
+  @override
+  Widget build(BuildContext context) {
+    // استخرج الأوصاف من بيانات الكونترولر
+    final List<String> options = bothJoysReHallController.condolencesServices
+        .where((service) => service.name == 'condolence_hospitality_services')
+        .map<String>((service) => service.description?.toString() ?? '')
+        .toList();
+
+    return PopupMenuButton<String>(
+      onSelected: (value) {
+        controller.toggleValue(value);
+      },
+      itemBuilder: (BuildContext context) {
+        return options.map((String option) {
+          return PopupMenuItem<String>(
+            value: option,
+            child: Obx(() {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(option),
+                  //هنا بس بدي عدل عليها بحيث احذف التشيك بوكس و خلي بالتفاصيل الاضافية يكتب شو بده ضيافة
+                  Checkbox(
+                    value: controller.isSelected(option),
+                    onChanged: (bool? value) {
+                      controller.toggleValue(option);
+                      bothJoysReHallController.selectedHospitalityDetail.value = option;
+                    },
+                    checkColor: Colors.white,
+                    activeColor: Colors.green,
+                  ),
+                ],
+              );
+            }),
+          );
+        }).toList();
+      },
+      child: Container(
+        height: 8.w,
+        width: 7.w,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(width: 1.8),
+        ),
+        child: Icon(
+          Icons.arrow_drop_down_outlined,
+          size: 6.w,
+        ),
+      ),
+    );
+  }
+}
+
+class DropdownHospitalityRelivedBothController extends GetxController {
   var selectedValues = <String>{}.obs;
 
   void toggleValue(String value) {
@@ -24,64 +86,58 @@ class DropdownController extends GetxController {
   }
 }
 
-class HospitalityDropdown extends StatelessWidget {
-  final DropdownController controller = Get.put(DropdownController());
-
-  final List<String> options = ['Cumin and lemon', 'Bitter coffee', 'Date'];
-
-  @override
-  Widget build(BuildContext context) {
-    return PopupMenuButton<String>(
-      onSelected: (value) {
-        controller.toggleValue(value);
-      },
-      itemBuilder: (BuildContext context) {
-        return options.map((String option) {
-          return PopupMenuItem<String>(
-            value: option,
-            child: Obx(() { // Wrap the Checkbox in Obx
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(option),
-                  Checkbox(
-                    value: controller.isSelected(option),
-                    onChanged: (bool? value) {
-                      controller.toggleValue(option);
-                    },
-                    checkColor: Colors.white,
-                    activeColor: Colors.green,
-                  ),
-                ],
-              );
-            }),
-          );
-        }).toList();
-      },
-      child: Container(
-        // padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        // decoration: BoxDecoration(
-        //   border: Border.all(color: Colors.grey),
-        //   borderRadius: BorderRadius.circular(8),
-        // ),
-        height: 12.w,
-        width: 86.w,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            border:Border(bottom: BorderSide(color: Colors.black54,width: 1))
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-
-            Padding(
-              padding:  EdgeInsets.only(left: 2.w),
-              child: Text('chose the lounge type'),
-            ),
-            Icon(Icons.arrow_drop_down, size: 25),
-          ],
-        ),
-      ),
-    );
-  }
-}
+// class HospitalityRelivedBothDropdown extends StatelessWidget {
+//   final DropdownHospitalityRelivedBothController controller = Get.put(DropdownHospitalityRelivedBothController());
+//   BothJoysReHallController bothJoysReHallController=Get.put(BothJoysReHallController());
+//   final List<String> options = ['Cumin and lemon', 'Bitter coffee', 'Date'];
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return PopupMenuButton<String>(
+//       onSelected: (value) {
+//         controller.toggleValue(value);
+//       },
+//       itemBuilder: (BuildContext context) {
+//         return options.map((String option) {
+//           return PopupMenuItem<String>(
+//             value: option,
+//             child: Obx(() { // Wrap the Checkbox in Obx
+//               return Row(
+//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                 children: [
+//                   Text(option),
+//                   Checkbox(
+//                     value: controller.isSelected(option),
+//                     onChanged: (bool? value) {
+//                       controller.toggleValue(option);
+//                       bothJoysReHallController.selectedHospitalityDetail.value=option;
+//                     },
+//                     checkColor: Colors.white,
+//                     activeColor: Colors.green,
+//                   ),
+//                 ],
+//               );
+//             }),
+//           );
+//         }).toList();
+//       },
+//       child:
+//       Container(
+//         height: 8.w,
+//         width: 7.w,
+//         decoration: BoxDecoration(
+//             shape: BoxShape.circle,
+//             border: Border(
+//               left: BorderSide(width: 1.8),
+//               right: BorderSide(width: 1.8),
+//               top: BorderSide(width: 1.8),
+//               bottom: BorderSide(width: 1.8),
+//             )),
+//         child: Icon(
+//           Icons.arrow_drop_down_outlined,
+//           size: 6.w,
+//         ),
+//       ),
+//     );
+//   }
+// }

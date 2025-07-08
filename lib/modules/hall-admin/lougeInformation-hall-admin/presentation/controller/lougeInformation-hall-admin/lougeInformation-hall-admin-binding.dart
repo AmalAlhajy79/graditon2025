@@ -6,7 +6,7 @@ class LougeInformationHallAdminBinding extends Bindings {
 
   @override
   void dependencies() {
-    Get.put(LougeInformationHallAdminController());
+    Get.put(HallControllerrr());
   }
 
 }

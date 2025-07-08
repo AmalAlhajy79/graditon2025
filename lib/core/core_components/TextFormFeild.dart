@@ -16,6 +16,8 @@ class TextFieldWhite extends StatelessWidget {
   double? hintfontSize;
   Color? hintcolorTextStyle;
   Icon? icon;
+  Icon? suffixIcon;
+  TextEditingController? controller;
 
   TextFieldWhite(
       {required this.title,
@@ -29,7 +31,9 @@ class TextFieldWhite extends StatelessWidget {
         this.hint,
         this.hintcolorTextStyle,
         this.hintfontSize,
-        this.hintfontWeight
+        this.hintfontWeight,
+        this.controller,
+        this.suffixIcon
       });
   @override
   Widget build(BuildContext context) {
@@ -44,12 +48,14 @@ class TextFieldWhite extends StatelessWidget {
         ),
         child:
         TextField(
-          obscureText: true, // لإخفاء كلمة المرور
+        //  obscureText: true, // لإخفاء كلمة المرور
+          controller: controller,
           decoration: InputDecoration(
             labelText: "$title",
             prefixIcon:icon != null
                 ? icon
                 :Text(""),
+            suffixIcon:suffixIcon!=null?suffixIcon:Text("") ,
             hintStyle:  TextStyle(
               color: hintcolorTextStyle != null
                   ? hintcolorTextStyle
@@ -64,7 +70,7 @@ class TextFieldWhite extends StatelessWidget {
                 fontSize:fontSize != null ? fontSize : 3.4.w),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14), // زوايا دائرية
-              borderSide: BorderSide(color:  Colors.black54, width: 1.0), // لون بني
+              borderSide: BorderSide(color:Colors.black54, width: 1.0), // لون بني
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(14), // زوايا دائرية عند التركيز

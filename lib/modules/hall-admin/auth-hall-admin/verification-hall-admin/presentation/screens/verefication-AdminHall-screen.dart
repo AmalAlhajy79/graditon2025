@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hall_gradition/core/consts/app_colors.dart';
 import 'package:hall_gradition/core/ui_sizer/app_sizer.dart';
 import 'package:hall_gradition/core/core_components/textUtiles.dart';
+import 'package:hall_gradition/modules/hall-admin/auth-hall-admin/changePassword-hall-admin/presentation/screens/ChangePasswordAdminHall-screen.dart';
 import '../../../../../../core/core_components/TextFormFeild.dart';
 import '../../../../../../core/core_components/app_scaffold.dart';
 import '../../../changePassword-hall-admin/presentation/controller/change-Password/changePassword-binding.dart';
@@ -168,7 +169,9 @@ class VerificationHallAdminScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       FloatingActionButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed(ChangePasswordAadminHallScreen.name);
+                        },
                         backgroundColor: AppColors.col6,
                         shape: RoundedRectangleBorder(
                           borderRadius:

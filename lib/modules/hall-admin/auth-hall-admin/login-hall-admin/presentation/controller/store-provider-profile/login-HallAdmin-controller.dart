@@ -11,11 +11,10 @@ class LoginHallAdminController extends GetxController {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
 
-  String? _path;
+  var isPasswordVisible = false.obs; // متغير مراقب باستخدام GetX
 
-  void setPath(String? newPath) {
-    _path = newPath;
-
+  void togglePasswordVisibility() {
+    isPasswordVisible.value = !isPasswordVisible.value; // تبديل الحالة
   }
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -25,38 +24,23 @@ class LoginHallAdminController extends GetxController {
 
   DataStatus get status => _dataState.status;
 
-  void storProfProvider() async {
-    // print("....... status 1 in screen store profile .......");
-    // print(status);
-    // if (!formKey.currentState!.validate())
-    //   return;
-    // _dataState = const DataState(status: DataStatus.loading);
-    // print('.............loading..........');
-    // showLoader();
-    // print("....... status 2 in screen store profile .......");
-    // print(status);
-    // print(".... _path value of picture .......");
-    // print(_path);
-    _dataState = await handle<void>(
+  void loginHallAdmin() async {
+     await handle<void>(
             () =>
                 LoginHallAdminDataSource.login_HallAdmin(
-               // provider_id:1, //user_id_Controller.hashCode,
                   email: emailController.text,
                 password:passwordController.text,
             ));
 
     // Get.back();
-    if(status == DataStatus.error){
-    //   print("....... status 4 in screen store profile .......");
-    //   print(status);
-    // showSnackBar(_dataState.message);
-    print('.............error..........');
-
-    }
-    else{
-      print("True .....");
-
-    }
+    // if(status == DataStatus.error){
+    //
+    // print('.............error..........');
+    //
+    // }
+    // else{
+    //   print("True .....");
+    // }
   }
 
   @override

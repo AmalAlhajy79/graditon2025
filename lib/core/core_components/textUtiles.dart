@@ -21,8 +21,10 @@ class TextUtiles extends StatelessWidget {
       style: TextStyle(
           fontSize: fontSize != null ? fontSize : 14,
           fontWeight: fontWeight != null ? fontWeight : FontWeight.bold,
-          color:colorTextStyle != null ? colorTextStyle: AppColors.black
+          color:colorTextStyle != null ? colorTextStyle: AppColors.black,
       ),
+     maxLines:7, // يمنع زيادة السطر
+      overflow: TextOverflow.ellipsis, // يظهر نقاط (...) إذا كان النص طويل
     );
   }
 }

@@ -9,6 +9,11 @@ class ChangePasswordAdminHallController extends GetxController {
 
   final TextEditingController newPassword_Controller = TextEditingController();
   final TextEditingController confirmPassword_Controller = TextEditingController();
+  var isPasswordVisible = false.obs; // متغير مراقب باستخدام GetX
+
+  void togglePasswordVisibility() {
+    isPasswordVisible.value = !isPasswordVisible.value; // تبديل الحالة
+  }
 
   String? _path;
 

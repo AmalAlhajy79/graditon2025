@@ -4,30 +4,11 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:hall_gradition/core/ui_sizer/app_sizer.dart';
 
-class DropdownController extends GetxController {
-  var selectedValues = <String>{}.obs;
+import '../controller/lougeInformation-hall-admin/lougeInformation-hall-admin-controller.dart';
 
-  void toggleValue(String value) {
-    if (selectedValues.contains(value)) {
-      selectedValues.remove(value);
-    } else {
-      selectedValues.add(value);
-    }
-  }
+class loungeTypeDropdown extends GetView<HallControllerrr> {
 
-  bool isSelected(String value) {
-    return selectedValues.contains(value);
-  }
-
-  bool hasSelectedValues() {
-    return selectedValues.isNotEmpty;
-  }
-}
-
-class loungeTypeDropdown extends StatelessWidget {
-  final DropdownController controller = Get.put(DropdownController());
-
-  final List<String> options = ['joys', 'relieved', 'joys and relieved'];
+  final List<String> options = ['joys', 'sorrows', 'both'];
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +32,8 @@ class loungeTypeDropdown extends StatelessWidget {
                         value: controller.isSelected(option),
                         onChanged: (bool? value) {
                           controller.toggleValue(option);
+                          // add bellow line
+
                         },
                         checkColor: Colors.white,
                         activeColor: Colors.green,

@@ -5,8 +5,8 @@ import 'package:hall_gradition/core/ui_sizer/app_sizer.dart';
 import 'package:hall_gradition/core/core_components/textUtiles.dart';
 import '../../../../../core/core_components/app_scaffold.dart';
 import '../../../../../core/core_components/button.dart';
+import '../../../myHalls-admin/presentation/screens/myHallsAdmin-screen.dart';
 import '../controller/lougeInformation-hall-admin/lougeInformation-hall-admin-binding.dart';
-import '../controller/lougeInformation-hall-admin/lougeInformation-hall-admin-controller.dart';
 
 class WaitHallAdminScreen extends StatelessWidget {
   // const WaitHallAdminScreen({Key? key}) : super(key: key);
@@ -88,7 +88,9 @@ class WaitHallAdminScreen extends StatelessWidget {
                           weight: 77.w,
                           height: 13.w,
                           colorContainer: AppColors.col6.withAlpha(126),
-                          onTap: (){},
+                          onTap: (){
+                            Get.toNamed(MyHallsAdminScreen.name);
+                          },
                           //colorContainer:AppColors.col6.withAlpha(126),
                         ),
                       ],

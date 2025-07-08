@@ -1,16 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:hall_gradition/core/core_components/app_scaffold.dart';
 import 'package:hall_gradition/core/core_components/button.dart';
 import 'package:hall_gradition/core/core_components/textUtiles.dart';
 import 'package:hall_gradition/core/ui_sizer/app_sizer.dart';
+import 'package:hall_gradition/modules/hall-admin/auth-hall-admin/verification-hall-admin/presentation/screens/verefication-AdminHall-screen.dart';
 
 import '../../../../../../core/consts/app_colors.dart';
 import '../../../../../../core/core_components/TextFormFeild.dart';
+import '../../../../home-hall-admin/presentation/screens/home-hall-admin-screen.dart';
+import '../../../../myHalls-admin/presentation/screens/myHallsAdmin-screen.dart';
 import '../controller/store-provider-profile/login-HallAdmin-binding.dart';
+import '../controller/store-provider-profile/login-HallAdmin-controller.dart';
 
-class LoginHallAdmin extends StatelessWidget {
+class LoginHallAdmin extends GetView<LoginHallAdminController> {
   LoginHallAdmin({Key? key}) : super(key: key);
   static const name = '/LoginHallAdmin';
   static final page = GetPage(
@@ -44,6 +51,7 @@ class LoginHallAdmin extends StatelessWidget {
               height: 15.w,
             ),
             TextFieldWhite(
+              controller: controller.emailController,
               title: "Enter your email",
               icon: Icon(Icons.email_outlined, size: 23),
               colorContainer: AppColors.color3.withAlpha(80),
@@ -53,9 +61,14 @@ class LoginHallAdmin extends StatelessWidget {
               height: 2.6.w,
             ),
             TextFieldWhite(
+              controller: controller.passwordController,
               title: "Enter your password",
               icon: Icon(Icons.lock_outlined, size: 23),
               colorContainer: AppColors.color3.withAlpha(80),
+              suffixIcon: controller.isPasswordVisible.value
+                  ? Icon(Icons.remove_red_eye_rounded,color: Colors.black54,)
+                  : Icon(Icons.visibility_off_rounded,color: Colors.black54,),
+
               weight: 85.w,
             ),
             SizedBox(
@@ -66,7 +79,12 @@ class LoginHallAdmin extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextUtiles(title: "Forgit password?", fontSize: 12.6),
+                  InkWell(
+                    onTap: (){
+                      Get.toNamed(VerificationHallAdminScreen.name);
+                      },
+                      child: TextUtiles(title: "Forgit password?",
+                          fontSize: 12.6)),
                 ],
               ),
             ),
@@ -78,7 +96,10 @@ class LoginHallAdmin extends StatelessWidget {
               child: ButtonScreen(
                 title: "sign in",
                 weight: 85.w,
-                onTap: (){},
+                onTap: (){
+                //  controller.loginHallAdmin();
+                  Get.toNamed(MyHallsAdminScreen.name);
+                  },
               ),
             ),
             SizedBox(

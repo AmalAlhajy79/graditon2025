@@ -1,8 +1,13 @@
 
 import 'dart:convert';
 
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:hall_gradition/modules/hall-admin/home-hall-admin/presentation/screens/home-hall-admin-screen.dart';
+
 import '../../../../../../core/consts/api_const.dart';
 import '../../../../../../core/network/network_helper.dart';
+import '../../../../myHalls-admin/presentation/screens/myHallsAdmin-screen.dart';
 
 class LoginHallAdminDataSource{
 
@@ -12,19 +17,18 @@ class LoginHallAdminDataSource{
     // String? profile_image
   })
   async{
-    var response = await NetworkHelper().put(
+    var response = await NetworkHelper().post(
        ApiConst.loginHallAdmin,
-        // body: {
-        //   'email': email,
-        //   'password': password,
-        // },
-        // files: {
-        //   if(profile_image != null)
-        //     'profile_image':profile_image
-        // }
+        body: {
+          'email': email,
+          'password': password,
+        },
     );
-print('.............response.........');
-print(response.data.toString());
+    if(response.statusCode==200 || response.statusCode==201) {
+      print('.............response.........');
+      print(response.data.toString());
+      Get.toNamed(MyHallsAdminScreen.name);
+    }
   }
 
   // static Future<void> destroy_provider_profile(int id)async{

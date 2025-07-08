@@ -5,7 +5,8 @@ class AppColors {
 
   static const gerysuggest =Color(0xFFD9D9D9);
   static const zayteGamiq =Color(0xFF5E5B35);
-  static const zayteFateh =Color(0xFFC5C29B);
+  static final  zayteFateh =Color(0xFFC5C29B);//Color(0xFFC5C29B);
+  static final  zayteFateh2 =Color.lerp(Color(0xFFD5D2AC), Colors.white, 0.2);
   static const col1 =Color(0xFFDCA4B7);
   static const col2 =Color(0x81C599C5);
   static const col22 =Color(0xFFDCA4B7);

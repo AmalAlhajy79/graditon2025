@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hall_gradition/core/core_components/textUtiles.dart';
 import 'package:hall_gradition/core/ui_sizer/app_sizer.dart';
+import 'package:hall_gradition/modules/hall-admin/auth-hall-admin/login-hall-admin/presentation/screens/LoginHallAdmin.dart';
 import 'package:hall_gradition/modules/hall-admin/profile-hall-admin/edit-profile-hall-admin/presentation/screens/EditProfile-AdminHall-screen.dart';
 import '../../../../../../core/consts/app_colors.dart';
 import '../../../../../../core/core_components/app_scaffold.dart';
 import '../../../../../../core/core_components/navigationBar.dart';
+import '../../../../home-hall-admin/presentation/controller/home-hall-admin/home-hall-admin-Controller.dart';
+import '../../../../home-hall-admin/presentation/screens/home-hall-admin-screen.dart';
 import '../../../../lougeInformation-hall-admin/presentation/screens/lougeInformation-hall-admin-screen.dart';
 import '../../../../myEmployees-hall-admin/presentation/screens/myEmployees-hallAdmin-screen.dart';
+import '../../../../myHalls-admin/presentation/screens/myHallsAdmin-screen.dart';
 import '../controller/vieProfile-hallAdmin/vieProfile-hallAdmin-binding.dart';
 
 class ViewProfileHallAdminScreen extends StatelessWidget {
@@ -16,7 +20,7 @@ class ViewProfileHallAdminScreen extends StatelessWidget {
       name: name,
       page: () => ViewProfileHallAdminScreen(),
       binding: ViewProfileAdminHallBinding());
-
+  HallDetailsAdminController hallDetailsAdminController=Get.find();
   @override
   Widget build(BuildContext context) {
     var mq = MediaQuery.of(context).size;
@@ -61,7 +65,8 @@ class ViewProfileHallAdminScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.only(left: 6.w),
-                  child: Row(
+                  child:
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CircleAvatar(
@@ -148,7 +153,7 @@ class ViewProfileHallAdminScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w400,
                                   colorTextStyle: Colors.black87),
                               onTap: () {
-                                Navigator.pop(context);
+                                Get.toNamed(MyHallsAdminScreen.name);
                               },
                             ),
                             ListTile(
@@ -184,6 +189,17 @@ class ViewProfileHallAdminScreen extends StatelessWidget {
                                 Navigator.pop(context);
                               },
                             ),
+                            ListTile(
+                              leading: Icon(Icons.logout_outlined),
+                              title: TextUtiles(
+                                  title: 'Log out',
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  colorTextStyle: Colors.black87),
+                              onTap: () {
+                                Get.toNamed(LoginHallAdmin.name);
+                              },
+                            ),
                           ],
                         ),
                       ],
@@ -195,7 +211,7 @@ class ViewProfileHallAdminScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(),
+      bottomNavigationBar: CustomBottomNavigationBar(hallId:hallDetailsAdminController.hallId_public),
     );
   }
 }

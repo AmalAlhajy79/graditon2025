@@ -5,7 +5,7 @@ class JoysHallServicesBinding extends Bindings {
 
   @override
   void dependencies() {
-    Get.put(JoysHallServicesController());
+    Get.put<JoysHallServicesController>(JoysHallServicesController());
   }
 
 }

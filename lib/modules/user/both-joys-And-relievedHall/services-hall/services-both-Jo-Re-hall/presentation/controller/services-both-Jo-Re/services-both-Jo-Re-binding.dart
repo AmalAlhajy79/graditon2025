@@ -5,7 +5,7 @@ class BothJoysReHallBinding extends Bindings {
 
   @override
   void dependencies() {
-    Get.put(BothJoysReHallController());
+    Get.put<BothJoysReHallController>(BothJoysReHallController());
   }
 
 }

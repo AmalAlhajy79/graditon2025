@@ -1,76 +1,60 @@
-import 'dart:convert';
-ShowProviderProfileModel ShowUserProfileModelModelFromJson(String str) => ShowProviderProfileModel.fromJson(json.decode(str));
+class Assistant {
+  final int id;
+  final String name;
+  final String? photo;
+  final String email;
+  final String number;
+  final String? photoUrl;
 
-class ShowProviderProfileModel {
-  ProfileProvider profile_provider;
-  //User user;
+  Assistant({
+    required this.id,
+    required this.name,
+    this.photo,
+    required this.email,
+    required this.number,
+    this.photoUrl,
+  });
 
-  ShowProviderProfileModel({required this.profile_provider});
-
-  factory ShowProviderProfileModel.fromJson(Map<String, dynamic> json) {
-    print("NNNNNNNNNNNNn");
-    print(json);
-    return ShowProviderProfileModel(
-      profile_provider: ProfileProvider.fromJson(json['profile']),
+  factory Assistant.fromJson(Map<String, dynamic> json) {
+    return Assistant(
+      id: json['id'],
+      name: json['name'],
+      photo: json['photo'],
+      email: json['email'],
+      number: json['number'],
+      photoUrl: json['photo'],
     );
   }
 }
 
-class ProfileProvider {
-  // int id;
-  // int userId;
-  String name = '';
-  String profileImage = '';
-  String email = '';
+class AssistantData {
+  final int id;
+  final int hallId;
+  final int userId;
+  // final String status;
+  // final String createdAt;
+  // final String updatedAt;
+  final Assistant user;
 
-  //Null emailVerifiedAt;
-  String address = '';
-  String phoneNumber = '';
-
-  // String createdAt;
-  // String updatedAt;
-
-  ProfileProvider({
-    // this.id,
-    // this.userId,
-    required this.name,
-    required this.profileImage,
-    required this.email,
-    //  this.emailVerifiedAt,
-    required this.address,
-    required this.phoneNumber,
-    // this.createdAt,
-    // this.updatedAt
+  AssistantData({
+    required this.id,
+    required this.hallId,
+    required this.userId,
+    // required this.status,
+    // required this.createdAt,
+    // required this.updatedAt,
+    required this.user,
   });
 
-  ProfileProvider.fromJson(Map<String, dynamic> json) {
-    // id = json['id'];
-    // userId = json['User_id'];
-    print("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT");
-    name = json['name'];
-    print(name);
-    profileImage = json['profile_image'];
-    email = json['email'];
-    //emailVerifiedAt = json['email_verified_at'];
-    address = json['address'];
-    phoneNumber = json['phone_number'];
-    // createdAt = json['created_at'];
-    // updatedAt = json['updated_at'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    // data['id'] = this.id;
-    // data['User_id'] = this.userId;
-    data['name'] = this.name;
-    data['profile_image'] = this.profileImage;
-    data['email'] = this.email;
-    //data['email_verified_at'] = this.emailVerifiedAt;
-    data['address'] = this.address;
-    data['phone_number'] = this.phoneNumber;
-    // data['created_at'] = this.createdAt;
-    // data['updated_at'] = this.updatedAt;
-    return data;
+  factory AssistantData.fromJson(Map<String, dynamic> json) {
+    return AssistantData(
+      id: json['id'],
+      hallId: json['hall_id'],
+      userId: json['user_id'],
+      // status: json['status'],
+      // createdAt: json['created_at'],
+      // updatedAt: json['updated_at'],
+      user: Assistant.fromJson(json['user']),
+    );
   }
 }
-
